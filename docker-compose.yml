@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  api:
+    build: 
+      dockerfile: Dockerfile
+      network: host
+    command: npm run start
+    restart: always
+    ports:
+      - "3000:3000"
+
+  api-db:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
