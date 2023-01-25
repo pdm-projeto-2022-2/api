@@ -11,9 +11,9 @@ datasource db {
 }
 
 model Funcionario {
-  Id Int @id @default(autoincrement())
-  nome String?
-  matricula String?
-  isAdmin Boolean?
-  imagem String?
+  id Int @id @default(autoincrement())
+  nome String
+  matricula String
+  isAdmin Boolean
+  imagem String
 }
