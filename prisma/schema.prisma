@@ -11,23 +11,33 @@ datasource db {
 }
 
 model Funcionario {
-  id Int @id @default(autoincrement())
-  nome String
+  id        Int     @id @default(autoincrement())
+  nome      String
   matricula String
-  senha String
-  isAdmin Boolean
-  imagem String
+  senha     String
+  isAdmin   Boolean
+  imagem    String
 }
 
-model Usuario{
-  id Int @id @default(autoincrement())
-  nome String
-  tipoSangue String
-  email String
-  tel String
-  senha String
-  sexo String
+model Usuario {
+  id             Int      @id @default(autoincrement())
+  nome           String
+  tipoSangue     String
+  email          String
+  tel            String
+  senha          String
+  sexo           String
   dataNascimento DateTime
-  registro String
-  imagem String
+  registro       String
+  imagem         String
+  doacao         Doacao[]
+}
+
+model Doacao {
+  id       Int      @id @default(autoincrement())
+  data     DateTime
+  doadorId Int
+  realizada Boolean
+  
+  doador   Usuario  @relation(fields: [doadorId], references: [id])
 }
