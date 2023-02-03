@@ -6,10 +6,9 @@ ADD tsconfig.json /app/tsconfig.json
 ADD tsconfig.build.json /app/tsconfig.build.json
 WORKDIR /app
 RUN ["npm", "install"]
-
-
-FROM build
+ADD prisma /app/prisma
 ADD src /app/src
-#DEVMODE
-CMD ["npm", "run", "start"]
+ARG DB_URL
+ENV DATABASE_URL ${DB_URL}
+CMD ["npm", "run", "start:migrate"]
 EXPOSE 3000

@@ -6,10 +6,12 @@ services:
     build: 
       dockerfile: Dockerfile
       network: host
-    command: npm run start
+      args:
+        - DB_URL=${DATABASE_URL}
     restart: always
     ports:
       - "3000:3000"
+    
 
   api-db:
     image: postgres:latest
