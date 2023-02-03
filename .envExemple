@@ -1,0 +1,4 @@
+DB_USER=user
+DB_PASS=pass
+DB_DB=dev
+DATABASE_URL=postgresql://user:pass@api-db/dev
