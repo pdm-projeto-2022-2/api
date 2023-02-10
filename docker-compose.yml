@@ -1,25 +1,24 @@
 version: '3.8'
-
 services:
-
-  api:
-    build: 
-      dockerfile: Dockerfile
-      network: host
-      args:
-        - DB_URL=${DATABASE_URL}
-    restart: always
-    ports:
-      - "3000:3000"
-    
-
-  api-db:
-    image: postgres:latest
-    restart: always
+  postgres-compose:
+    image: postgis/postgis:13-3.2
     environment:
-      - POSTGRES_PASSWORD=${DB_PASS}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_DB$=${DB_DB} 
+      POSTGRES_PASSWORD: "123"
     ports:
-      - "5433:5432"
-    
+      - "5432:5432"
+    networks:
+      - postgres-compose-network
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgree"
+    ports:
+      - "15432:80"
+    depends_on:
+      - postgres-compose
+    networks:
+      - postgres-compose-network
+networks: 
+  postgres-compose-network:
+    driver: bridge

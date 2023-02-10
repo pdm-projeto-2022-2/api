@@ -13,7 +13,7 @@ datasource db {
 model Funcionario {
   id        Int     @id @default(autoincrement())
   nome      String
-  matricula String
+  matricula String @unique
   senha     String
   isAdmin   Boolean
   imagem    String
@@ -23,7 +23,7 @@ model Usuario {
   id             Int      @id @default(autoincrement())
   nome           String
   tipoSangue     String
-  email          String
+  email          String   @unique
   tel            String
   senha          String
   sexo           String
@@ -32,12 +32,16 @@ model Usuario {
   imagem         String
   doacao         Doacao[]
 }
-
+enum status_doacao {
+  MARCADA 
+  FINALIZADA
+}
 model Doacao {
   id       Int      @id @default(autoincrement())
   data     DateTime
   doadorId Int
-  realizada Boolean
+  status status_doacao
   
   doador   Usuario  @relation(fields: [doadorId], references: [id])
 }
+
