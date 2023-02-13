@@ -1,6 +1,7 @@
 import {
   IsDate,
   IsEmail,
+  IsEnum,
   IsNotEmpty,
   IsOptional,
   IsPhoneNumber,
@@ -14,9 +15,9 @@ export class CreateUserDto {
   @IsNotEmpty()
   nome: string;
 
-  @IsString()
+  @IsEnum(tipo_sanguineo)
   @IsNotEmpty()
-  tipoSangue: string;
+  tipoSangue: tipo_sanguineo;
 
   @IsEmail()
   @IsString()
@@ -61,4 +62,7 @@ export class CreateUserDto {
   @IsDate()
   @IsOptional()
   updatedAt: Date;
+
+  @IsString()
+  localizacao :string
 }

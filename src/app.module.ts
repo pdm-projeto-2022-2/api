@@ -9,6 +9,7 @@ import { UserModule } from './module/user/user.module';
 import { AuthModule } from './module/auth/auth.module';
 import { JwtAuthGuard } from './module/auth/guards/jwt-auth.guard';
 
+
 @Module({
   imports: [
     FuncionarioModule,
@@ -17,6 +18,7 @@ import { JwtAuthGuard } from './module/auth/guards/jwt-auth.guard';
     UserModule,
     AuthModule,
     ConfigModule.forRoot({ isGlobal: true }),
+    
   ],
   controllers: [],
   providers: [

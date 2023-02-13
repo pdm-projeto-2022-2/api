@@ -22,19 +22,30 @@ model Funcionario {
 model Usuario {
   id             Int      @id @default(autoincrement())
   nome           String
-  tipoSangue     String
+  tipoSangue     tipo_sanguineo
   email          String   @unique
   tel            String
   senha          String
   sexo           String
   dataNascimento DateTime
   registro       String
+  localizacao    String
   imagem         String
   doacao         Doacao[]
 }
 enum status_doacao {
   MARCADA 
   FINALIZADA
+}
+enum tipo_sanguineo {
+  A_POSITIVO
+  A_NEGATIVO
+  B_POSITIVO
+  B_NEGATIVO
+  AB_POSITIVO
+  AB_NEGATIVO
+  O_POSITIVO
+  O_NEGATIVO
 }
 model Doacao {
   id       Int      @id @default(autoincrement())
